@@ -32,7 +32,8 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager=StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.layoutManager=LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+        //recyclerView.layoutManager=StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
         launch {
             context?.let {
                 val notes=NoteDatabase(it).getNoteDao().getAllNotes()
