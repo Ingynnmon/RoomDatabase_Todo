@@ -6,10 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.example.roomdatabase_todo.R
+import com.example.roomdatabase_todo.db.NoteDatabase
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : BaseFragment() {
@@ -24,6 +30,16 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager=StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
+        launch {
+            context?.let {
+                val notes=NoteDatabase(it).getNoteDao().getAllNotes()
+                recyclerView.adapter=NotesAdapter(notes)
+            }
+        }
+
         button_Add.setOnClickListener{
             val action = HomeFragmentDirections.actionAddNote()
             Navigation.findNavController(it).navigate(action)

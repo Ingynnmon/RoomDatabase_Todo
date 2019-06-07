@@ -21,8 +21,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:hint="Note"
-            android:inputType="text"
-            android:id="@+id/editText_note"/>
+            android:id="@+id/editText_note"
+            android:inputType="textMultiLine"
+            android:gravity="top"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:src="@drawable/ic_done"

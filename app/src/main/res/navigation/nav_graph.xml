@@ -11,5 +11,10 @@
     <fragment android:id="@+id/addNoteFragment" android:name="com.example.roomdatabase_todo.ui.AddNoteFragment"
               android:label="AddNote" tools:layout="@layout/fragment_add_note">
         <action android:id="@+id/actionSaveNote" app:destination="@id/homeFragment"/>
+        <argument
+                app:argType="com.example.roomdatabase_todo.db.Note"
+                android:name="Note"
+                app:nullable="true"
+                android:defaultValue="@null"/>
     </fragment>
         </navigation>
